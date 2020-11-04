@@ -1,7 +1,7 @@
 <!--
  * @Author: xgj
  * @since: 2020-11-04 20:32:02
- * @lastTime: 2020-11-04 22:58:41
+ * @lastTime: 2020-11-04 23:00:44
  * @LastAuthor: xgj
  * @FilePath: /my-alpha-project/src/pages/art/index.vue
  * @message: 
@@ -70,7 +70,7 @@ export default {
       }
     },
     async handleSearch() {
-      const r = await api.Goods.pageNoAuth({ name: this.keyword, _type: this.typeList[index]._id })
+      const r = await api.Goods.pageNoAuth({ name: this.keyword, _type: this.typeList[this.selectIndex]._id })
       if (r) {
         this.goodsList = r.list
       }
