@@ -1,7 +1,7 @@
 <!--
  * @Author: xgj
  * @since: 2020-11-04 20:32:02
- * @lastTime: 2020-11-05 16:11:36
+ * @lastTime: 2020-11-05 16:22:46
  * @LastAuthor: xgj
  * @FilePath: /my-alpha-project/src/pages/art/index.vue
  * @message: 
@@ -9,7 +9,7 @@
 <template>
   <view class="content">
     <view class="padding10">
-      <u-search placeholder="日照香炉生紫烟" v-model="keyword" @search="handleSearch"></u-search>
+      <u-search placeholder="日照香炉生紫烟" v-model="keyword" @search="handleSearch" @custom="handleSearch"></u-search>
     </view>
     <view class="select-cell">
       <view class="cell-left">
@@ -17,7 +17,7 @@
           {{item.name}}
         </view>
       </view>
-      <view class="cell-right">
+      <view class="cell-right" v-if="ready">
         <view v-if="goodsList.length != 0">
           <view v-for="item in goodsList" :key="item._id" class="cell" @click="handleDetailClick(item)">
             <img :src="url+item.img" alt="" class="cell-pic">
@@ -48,7 +48,8 @@ export default {
       selectIndex: 0,
       typeList: [],
       goodsList: [],
-      url: config.url
+      url: config.url,
+      ready: false
     }
   },
   created() {
@@ -56,9 +57,18 @@ export default {
   },
   methods: {
     async initData() {
-      const r = await api.Type.allNoAuth()
-      if (r) {
-        this.typeList = r
+      try {
+        const r = await api.Type.allNoAuth()
+        if (r) {
+          this.typeList = r
+          const result = await api.Goods.pageNoAuth({ _type: this.typeList[0]._id })
+          if (result) {
+            this.goodsList = result.list || []
+            this.ready = true
+          }
+        }
+      } catch (error) {
+        this.ready = true
       }
     },
     async handleClick(index) {
@@ -78,7 +88,7 @@ export default {
       uni.navigateTo({
         url: `/pages/detail/index?imgs=${item.imgs}`
       });
-    }
+    },
   }
 }
 </script>
