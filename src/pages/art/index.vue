@@ -1,7 +1,7 @@
 <!--
  * @Author: xgj
  * @since: 2020-11-04 20:32:02
- * @lastTime: 2020-11-05 16:22:46
+ * @lastTime: 2020-11-05 16:23:23
  * @LastAuthor: xgj
  * @FilePath: /my-alpha-project/src/pages/art/index.vue
  * @message: 
@@ -9,7 +9,7 @@
 <template>
   <view class="content">
     <view class="padding10">
-      <u-search placeholder="日照香炉生紫烟" v-model="keyword" @search="handleSearch" @custom="handleSearch"></u-search>
+      <u-search placeholder="请输入关键词" v-model="keyword" @search="handleSearch" @custom="handleSearch"></u-search>
     </view>
     <view class="select-cell">
       <view class="cell-left">
