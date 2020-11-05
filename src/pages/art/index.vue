@@ -1,7 +1,7 @@
 <!--
  * @Author: xgj
  * @since: 2020-11-04 20:32:02
- * @lastTime: 2020-11-04 23:00:44
+ * @lastTime: 2020-11-05 14:40:28
  * @LastAuthor: xgj
  * @FilePath: /my-alpha-project/src/pages/art/index.vue
  * @message: 
@@ -33,7 +33,6 @@
         <view v-else>
           <u-empty text="没有数据" mode="list"></u-empty>
         </view>
-
       </view>
     </view>
   </view>
@@ -147,7 +146,7 @@ export default {
 .cell-title-room {
   margin-left: 10rpx;
   .p1 {
-    margin-bottom: 10rpx;
+    margin-bottom: 6rpx;
     font-size: 32rpx;
   }
   .p2 {
