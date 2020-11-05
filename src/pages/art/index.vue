@@ -1,7 +1,7 @@
 <!--
  * @Author: xgj
  * @since: 2020-11-04 20:32:02
- * @lastTime: 2020-11-05 14:40:28
+ * @lastTime: 2020-11-05 16:11:36
  * @LastAuthor: xgj
  * @FilePath: /my-alpha-project/src/pages/art/index.vue
  * @message: 
@@ -92,7 +92,7 @@ export default {
 }
 .select-cell {
   display: flex;
-  height: calc(100vh - 170rpx);
+  height: calc(100vh - 84rpx);
   overflow-y: auto;
 }
 .cell-left {
