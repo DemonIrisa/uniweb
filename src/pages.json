@@ -6,12 +6,14 @@
     {
 			"path": "pages/art/index",
 			"style": {
+        "navigationStyle":"custom",
 				"navigationBarTitleText": "列表"
 			}
     },
     {
 			"path": "pages/detail/index",
 			"style": {
+        "navigationStyle":"custom",
 				"navigationBarTitleText": "详情"
 			}
     },
