@@ -93,7 +93,7 @@ export default {
       }
     },
     // 删除分类
-     deleteSort(_id) {
+    deleteSort(_id) {
       uni.showModal({
         content: '确定删除？',
         success: async res => {
@@ -113,22 +113,49 @@ export default {
           }
         }
       })
-
+    },
+    // 删除商品
+    deleteGoods(_id) {
+      uni.showModal({
+        content: '确定删除？',
+        success: async res => {
+          if (res.confirm) {
+            uni.showLoading({ mask: true })
+            const result = await api.Goods.remove({ _id })
+            if (result) {
+              uni.showToast({
+                title: '操作成功',
+                icon: 'none',
+                duration: 2000
+              })
+              this.getGoods()
+              this.showSort = false
+              this.initData()
+            }
+          }
+        }
+      })
     },
     async getGoods() {
-      const result = await api.Goods.pageNoAuth({ name: this.keyword, _type: this.typeList[this.selectIndex]._id })
+      const result = await api.Goods.pageNoAuth(
+        {
+          name: this.keyword,
+          _type: this.typeList[this.selectIndex]._id,
+          pageSize:10000
+        })
       if (result) {
         this.goodsList = result.list || []
         if (this.goodsList.length > 0) {
           this.goodsList.map(item => {
             item.imgList = []
+            let value = []
             if (item.value.indexOf('[') !== -1) {
-              item.value = JSON.parse(item.value)
+              value = JSON.parse(item.value)
             } else {
-              item.value = []
+              value = []
             }
-            if (item.value.length > 0) {
-              item.value.map(child => {
+            if (value.length > 0) {
+              value.map(child => {
                 if (child.type === 1) {
                   item.imgList = [...item.imgList, child.img]
                 } else if (child.type === 2) {
@@ -180,13 +207,11 @@ export default {
         success: res => {
           let { tapIndex } = res
           if (tapIndex === 0) {
-            this.routeTo(`/pages/detail/index?imgs=${item.imgs}`)
+            this.routeTo(`/pages/detail/index?value=${item.value}&name=${item.name}`)
           } else if (tapIndex === 1) {
-            this.showSort = true
-            this.sortObj._id = item._id
-            this.sortObj.name = item.name
+            this.routeTo(`/pages/goodsAdd/index?value=${item.value}&name=${item.name}&id=${item._id}&typeId=${item._type._id}&typeTxt=${item._type.name}`)
           } else if (tapIndex === 2) {
-            this.deleteSort(item._id)
+            this.deleteGoods(item._id)
           }
         },
         fail: res => {

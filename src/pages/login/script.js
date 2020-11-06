@@ -20,7 +20,7 @@ export default {
       uni.hideLoading()
       uni.setStorageSync('token', result.token)
       uni.setStorageSync('_id', result._id)
-      this.routeTo('/pages/art/index')
+      this.routeTo('/pages/artMan/index')
     }
   },
   onLoad () {}

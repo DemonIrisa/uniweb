@@ -30,12 +30,8 @@
           <!-- 文字 -->
           <textarea :maxlength="-1" class="detail" placeholder="请输入文字内容" v-model="item.txt" v-if="item.type===3" />
           <!-- 视频 -->
-          <div v-if="item.type===4" class="video-b-b">
-            <!-- <image class="img-big" mode="aspectFill" :src="item.video"></image>
-            <div class="model-btn">
-              <div class="play-icon"></div>
-            </div> -->
-            <video class="img-big" objectFit="contain" :src="item.video"></video>
+          <div v-if="item.type===4" class="video-b-b" @click="playVideo('myVideo'+i,i)">
+            <video class="img-big" :id="'myVideo'+i" objectFit="contain" :src="item.video"></video>
           </div>
           <!-- 换行 -->
           <div class="wrap-b" v-if="item.type===5"></div>

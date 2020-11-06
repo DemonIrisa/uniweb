@@ -54,7 +54,11 @@ export default {
   },
   methods: {
     async getGoods() {
-      const result = await api.Goods.pageNoAuth({ name: this.keyword, _type: this.typeList[this.selectIndex]._id })
+      const result = await api.Goods.pageNoAuth({
+        name: this.keyword,
+        _type: this.typeList[this.selectIndex]._id,
+        pageSize: 10000
+      })
       if (result) {
         this.goodsList = result.list || []
         if (this.goodsList.length > 0) {

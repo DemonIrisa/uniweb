@@ -18,11 +18,23 @@ export default {
       typeTxt: '',
       type: null,
       typeArr: [],
-      show: false
+      show: false,
+      id: null
     }
     // type 1大图 2小图 3 文字 4视频
   },
   methods: {
+    playVideo (id, i) {
+      let videoContext = uni.createVideoContext(id)
+      videoContext.play()
+      this.obj.content.map((item, j) => {
+        if (item.type === 4) {
+          if (i !== j) {
+            uni.createVideoContext('myVideo' + j).pause()
+          }
+        }
+      })
+    },
     confirmType (e) {
       this.type = e[0].value
       this.typeTxt = e[0].label
@@ -50,7 +62,7 @@ export default {
           uni.showLoading({ mask: true, title: '正在上传' })
           const token = uni.getStorageSync('token')
           uni.uploadFile({
-            url: api.Upload,
+            url: config.url + api.Upload,
             filePath: res.tempFilePath,
             name: 'files',
             header: {
@@ -171,6 +183,9 @@ export default {
         value: JSON.stringify(this.richList),
         _type: this.type
       }
+      if (this.id) {
+        params._id = this.id
+      }
       const result = await api.Goods.editoradd(params)
       if (result) {
         uni.navigateBack({
@@ -233,7 +248,7 @@ export default {
       }
       const token = uni.getStorageSync('token')
       uni.uploadFile({
-        url: api.Upload,
+        url: config.url + api.Upload,
         filePath: imgPaths[count],
         name: 'file',
         header: {
@@ -317,12 +332,19 @@ export default {
       })
     }
   },
-  onLoad () {
+  onLoad (options) {
     this.title = ''
     this.typeTxt = ''
     this.type = null
     this.richList.length = 0
+    this.id = null
     this.getType()
-    let query = this.$route.query
+    if (options.id) {
+      this.title = options.name
+      this.richList = JSON.parse(options.value)
+      this.type = options.typeId
+      this.typeTxt = options.typeTxt
+      this.id = options.id
+    }
   }
 }

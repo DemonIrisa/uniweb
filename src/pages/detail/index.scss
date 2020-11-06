@@ -1,12 +1,11 @@
 .news-detail-wrap {
   font-size: 0;
   color: #696969;
-  padding: 25rpx 15rpx 100rpx;
+  padding: 30rpx;
   position: relative;
 
   .title {
     font-size: 40rpx;
-    margin-bottom: 20rpx;
   }
 
   .date-hot {
@@ -31,7 +30,7 @@
   .wrap-p {
     font-size: 0;
     color: #545454;
-    margin-top: 40rpx;
+    margin-top: 20rpx;
     padding-bottom: 40rpx;
     border-bottom: 1rpx solid #F7F4F8;
 
@@ -46,6 +45,7 @@
     .img-big {
       width: 100%;
       height: 380rpx;
+      margin-bottom: 10rpx;
     }
 
     .wrap-b {
@@ -78,6 +78,7 @@
     // 视频按钮
     .video-b-b {
       position: relative;
+      margin-bottom: 10rpx;
 
       video {
         width: 100%;
@@ -106,47 +107,4 @@
     }
   }
 
-
-  .article-wrap {
-    font-size: 24rpx;
-    color: #717494;
-    justify-content: space-between;
-    padding-top: 20rpx;
-
-    .right-art {
-      text-align: right;
-    }
-
-    .left-art,
-    .right-art {
-      flex: 1;
-      line-height: 1.6;
-    }
-  }
-
-  // btn
-  .bottom-flex {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100rpx;
-    background: #fff;
-    box-shadow: 1px 1px 10px 0px rgba(107, 105, 105, 0.1);
-
-    .common-btn {
-      font-size: 32rpx;
-      color: #FE5250;
-      height: 100rpx;
-      line-height: 100rpx;
-      text-align: center;
-      display: inline-block;
-      flex: 1;
-    }
-
-    .red-btn {
-      background: #FE5250;
-      color: #fff;
-    }
-  }
 }
