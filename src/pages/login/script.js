@@ -1,5 +1,5 @@
 import api from '@/api'
-import md5Libs from "uview-ui/libs/function/md5";
+import md5Libs from 'uview-ui/libs/function/md5'
 export default {
   data () {
     return {
@@ -18,9 +18,11 @@ export default {
       this.params.password = md5Libs.md5(this.params.password)
       const result = await api.User.loginAdmin(this.params)
       uni.hideLoading()
-      uni.setStorageSync('token', result.token)
-      uni.setStorageSync('_id', result._id)
-      this.routeTo('/pages/artMan/index')
+      if (result) {
+        uni.setStorageSync('token', result.token)
+        uni.setStorageSync('_id', result._id)
+        this.routeTo('/pages/artMan/index')
+      }
     }
   },
   onLoad () {}
