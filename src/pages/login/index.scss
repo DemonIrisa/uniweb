@@ -1,0 +1,40 @@
+.login-wrap {
+  text-align: center;
+  color: #4a4a4a;
+  font-size: 28rpx;
+  
+  .logo {
+    width: 240rpx;
+    height: 240rpx;
+    margin-bottom: 20rpx;
+  }
+  .wrap-input{
+    justify-content: center;
+    margin-top: 40rpx;
+  }
+  .left-p{
+    width: 100rpx;
+    text-align: right;
+    padding-right: 16rpx;
+  }
+  .uni-input{
+    width: 440rpx;
+    height: 80rpx;
+    border-radius: 8rpx;
+    background-color: #F1F1F1;
+    font-size: 28rpx;
+    color: #4a4a4a;
+    text-align: left;
+    padding: 0 50rpx;
+  }
+  .login-btn{
+    width: 300rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background: #87ABF9;
+    margin-top: 80rpx;
+  }
+}

@@ -1,0 +1,234 @@
+.release-act-wrap {
+  width: 100%;
+  min-height: 100%;
+  font-size: 28rpx;
+  color: #4A4A4A;
+  padding: 30rpx 34rpx;
+  background: #f7f7f7;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+
+  .name-detail {
+    width: 100%;
+    background: #fff;
+    border-radius: 8rpx;
+    margin-bottom: 30rpx;
+
+    .name-w-w {
+      margin: 0 30rpx;
+      border-bottom: 2rpx dashed #E5E5E5;
+    }
+
+    .name-w-w:first-child {
+      padding-top: 16rpx;
+    }
+
+    .name {
+      width: 100%;
+      height: 100rpx;
+      padding: 0 30rpx;
+    }
+
+  }
+
+  .detail-wrap {
+    background: #fff;
+    border-radius: 8rpx;
+    padding: 60rpx 30rpx 20rpx;
+
+    .detail {
+      height: 140rpx;
+    }
+  }
+
+
+  .type-list {
+    .top-style {
+      justify-content: space-between;
+      margin-bottom: 10rpx;
+    }
+
+    .icon-three {
+      width: 38rpx;
+      height: 38rpx;
+      margin-left: 40rpx;
+    }
+
+    .img-big {
+      width: 100%;
+      height: 280rpx;
+    }
+
+    .size0 {
+      font-size: 0;
+    }
+
+    .img-small {
+      width: 200rpx;
+      height: 200rpx;
+      margin-right: 10rpx;
+      margin-bottom: 10rpx;
+    }
+
+    .img-small:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    .add-wrap {
+      width: 200rpx;
+      height: 200rpx;
+      border: 2rpx solid #eee;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10rpx;
+    }
+
+    .icon-add {
+      width: 44rpx;
+      height: 44rpx;
+    }
+
+    .small-i-img {
+      flex-wrap: wrap;
+    }
+
+    // 视频按钮
+    .video-b-b {
+      position: relative;
+
+      .model-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -55%);
+        width: 106rpx;
+        height: 106rpx;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 5rpx solid #fff;
+      }
+
+      .play-icon {
+        margin: 22rpx 0 0 36rpx;
+        border-top: 28rpx solid transparent;
+        border-left: 36rpx solid #fff;
+        border-bottom: 29rpx solid transparent;
+
+      }
+    }
+
+    // 换行
+    .wrap-b {
+      height: 20rpx;
+    }
+  }
+
+  .title-set {
+    margin-bottom: 30rpx;
+    color: #5E5E5E;
+    justify-content: space-between;
+  }
+
+  // 规格价格
+  .type-wrap {
+    width: 100%;
+    padding-top: 20rpx;
+    padding-bottom: 40rpx;
+    border-radius: 8rpx;
+    background: #fff;
+    margin-bottom: 30rpx;
+
+    .line-wrap {
+      margin: 0 30rpx;
+      border-bottom: 2rpx dashed #E5E5E5;
+    }
+
+    .left-w {
+      width: 140rpx;
+      height: 100rpx;
+      line-height: 100rpx;
+      padding-left: 28rpx;
+    }
+
+    .input-w {
+      flex: 1;
+      height: 100rpx;
+      padding-right: 30rpx;
+
+    }
+
+    .between-w {
+      justify-content: space-between;
+    }
+
+    .right-s {
+      flex: 1;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      height: 100rpx;
+    }
+
+    .name-s {
+      flex: 1;
+
+      .choose-more {
+        justify-content: flex-end;
+        height: 100rpx;
+      }
+    }
+
+    .add-tag {
+      font-size: 28rpx;
+      color: #3DC423;
+      text-align: right;
+      margin-top: 20rpx;
+      margin-right: 30rpx;
+    }
+  }
+
+  .right-color {
+    color: #B7B7B7;
+  }
+
+  .right-arrow {
+    width: 44rpx;
+    height: 44rpx;
+  }
+
+  // 图标
+  .icon-wrap {
+    margin-top: 30rpx;
+
+    .type-icon {
+      width: 100rpx;
+      height: 100rpx;
+    }
+
+    .type-icon+.type-icon {
+      margin-left: 30rpx;
+    }
+  }
+
+  .btn-w-wrap {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+
+    .flex-w {
+      flex: 1;
+      height: 100rpx;
+      line-height: 100rpx;
+      text-align: center;
+      font-size: 32rpx;
+      color: #545454;
+    }
+
+    .release-green {
+      color: #fff;
+      background: #4A4A4A;
+    }
+  }
+}

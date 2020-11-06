@@ -13,8 +13,12 @@
     </view>
     <view class="select-cell">
       <view class="cell-left">
-        <view v-for="(item,index) in typeList" @click="handleClick(index)" :key="item._id" :class="selectIndex === index?'active cell-btn': 'cell-btn' ">
+        <view v-for="(item,index) in typeList" @click="handleClick(index,item)" :key="item._id" :class="selectIndex === index?'active cell-btn': 'cell-btn' ">
           {{item.name}}
+        </view>
+        <view class="cell-btn" @click="visibleSort">
+          <u-icon name="plus" color="#4a4a4a" size="28"></u-icon>
+          添加
         </view>
       </view>
       <view class="cell-right" v-if="ready">
@@ -32,6 +36,15 @@
         </view>
       </view>
     </view>
+    <u-icon @click="routeTo('/pages/goodsAdd/index')" class="add-more" name="plus" color="#4a4a4a" size="50"></u-icon>
+    <!--添加分类-->
+    <div class="model-wrap" v-show="showSort"></div>
+    <div class="modal-sort" v-show="showSort">
+      <p class="title">{{edit?'修改分类':'添加分类'}}</p>
+      <input class="sort-name" placeholder="分类名称" v-model="sortObj.name" />
+      <button class="sure-btn" @click="addSort">确认</button>
+      <image @click="showSort=false" class="close" mode="widthFix" src="/static/close-circle.png"></image>
+    </div>
   </view>
 </template>
 
@@ -46,13 +59,62 @@ export default {
       typeList: [],
       goodsList: [],
       url: config.url,
-      ready: false
+      ready: false,
+      showSort: false,
+      edit: false,
+      sortObj: {
+        name: ''
+      }
     }
   },
   onLoad() {
+    this.showSort = false
+  },
+  onShow() {
     this.initData()
   },
   methods: {
+    visibleSort() {
+      this.showSort = true
+      delete this.sortObj._id
+    },
+    // 编辑分类
+    async addSort() {
+      uni.showLoading({ mask: true })
+      const result = await api.Type.editoradd(this.sortObj)
+      if (result) {
+        uni.showToast({
+          title: '操作成功',
+          icon: 'none',
+          duration: 2000
+        })
+        this.showSort = false
+        this.initData()
+      }
+    },
+    // 删除分类
+     deleteSort(_id) {
+      uni.showModal({
+        content: '确定删除？',
+        success: async res => {
+          if (res.confirm) {
+            uni.showLoading({ mask: true })
+            const result = await api.Type.remove({ _id })
+            if (result) {
+              uni.showToast({
+                title: '操作成功',
+                icon: 'none',
+                duration: 2000
+              })
+              this.getGoods()
+              this.showSort = false
+              this.initData()
+            }
+          }
+        }
+      })
+
+    },
     async getGoods() {
       const result = await api.Goods.pageNoAuth({ name: this.keyword, _type: this.typeList[this.selectIndex]._id })
       if (result) {
@@ -91,13 +153,35 @@ export default {
         this.ready = true
       }
     },
-    async handleClick(index) {
-      this.selectIndex = index
-      this.getGoods()
+    async handleClick(index, item) {
+      uni.showActionSheet({
+        itemList: ['查看', '编辑', '删除'],
+        success: res => {
+          let { tapIndex } = res
+          if (tapIndex === 0) {
+            this.selectIndex = index
+            this.getGoods()
+          } else if (tapIndex === 1) {
+            this.showSort = true
+            this.sortObj._id = item._id
+            this.sortObj.name = item.name
+          } else if (tapIndex === 2) {
+            this.deleteSort(item._id)
+          }
+        },
+        fail: res => {
+          console.log(res.errMsg)
+        }
+      })
     },
     handleDetailClick(item) {
       uni.navigateTo({
         url: `/pages/detail/index?imgs=${item.imgs}`
+      });
+    },
+    routeTo(url) {
+      uni.navigateTo({
+        url
       });
     }
   }

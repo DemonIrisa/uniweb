@@ -7,7 +7,14 @@
 			"path": "pages/art/index",
 			"style": {
         "navigationStyle":"custom",
-				"navigationBarTitleText": "列表"
+				"navigationBarTitleText": "温岭石雕刻"
+			}
+    },
+    {
+			"path": "pages/artMan/index",
+			"style": {
+        "navigationStyle":"custom",
+				"navigationBarTitleText": "温岭石雕刻"
 			}
     },
     {
@@ -22,8 +29,21 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+    },
+    {
+			"path": "pages/login/index",
+			"style": {
+        "navigationStyle":"custom",
+				"navigationBarTitleText": "登录"
+			}
+    },
+    {
+			"path": "pages/goodsAdd/index",
+			"style": {
+        "navigationStyle":"custom",
+				"navigationBarTitleText": "编辑"
+			}
     }
-   
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

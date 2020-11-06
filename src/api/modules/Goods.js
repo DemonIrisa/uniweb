@@ -19,3 +19,21 @@ export const pageNoAuth = (data = {}) => {
     loading: true,
   });
 };
+/**
+ * @memberof apis
+ * @description: 新建商品
+ * @function editoradd
+ * @param {name,value,_type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const editoradd = (data = {}) => {
+  return request.post({
+    url: 'editoradd',
+    data,
+    gateway,
+    loading: true,
+  });
+};

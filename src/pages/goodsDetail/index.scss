@@ -1,0 +1,152 @@
+.news-detail-wrap {
+  font-size: 0;
+  color: #696969;
+  padding: 25rpx 15rpx 100rpx;
+  position: relative;
+
+  .title {
+    font-size: 40rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .date-hot {
+    font-size: 28rpx;
+    color: #9B9B9B;
+    justify-content: space-between;
+
+    .hot-img {
+      width: 30rpx;
+      height: 30rpx;
+      margin-left: 24rpx;
+      margin-right: 10rpx;
+    }
+
+    .num {
+      color: #9D9D9D;
+      font-size: 24rpx;
+    }
+
+  }
+
+  .wrap-p {
+    font-size: 0;
+    color: #545454;
+    margin-top: 40rpx;
+    padding-bottom: 40rpx;
+    border-bottom: 1rpx solid #F7F4F8;
+
+    image {
+      width: 100% !important;
+    }
+
+    .p view {
+      display: inline-block;
+    }
+
+    .img-big {
+      width: 100%;
+      height: 380rpx;
+    }
+
+    .wrap-b {
+      height: 20rpx;
+    }
+
+    .img-small {
+      width: 200rpx !important;
+      margin-right: 24rpx;
+    }
+
+    .img-small:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    .text-info {
+      font-size: 26rpx;
+      color: #5E5E5E;
+      line-height: 40rpx;
+      margin: 20rpx 0;
+    }
+
+    .p,
+    text,
+    rich-text,
+    .span {
+      font-size: 26rpx;
+    }
+
+    // 视频按钮
+    .video-b-b {
+      position: relative;
+
+      video {
+        width: 100%;
+        height: 380rpx;
+      }
+
+      .model-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -55%);
+        width: 106rpx;
+        height: 106rpx;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 5rpx solid #fff;
+      }
+
+      .play-icon {
+        margin: 22rpx 0 0 42rpx;
+        border-top: 28rpx solid transparent;
+        border-left: 36rpx solid #fff;
+        border-bottom: 29rpx solid transparent;
+
+      }
+    }
+  }
+
+
+  .article-wrap {
+    font-size: 24rpx;
+    color: #717494;
+    justify-content: space-between;
+    padding-top: 20rpx;
+
+    .right-art {
+      text-align: right;
+    }
+
+    .left-art,
+    .right-art {
+      flex: 1;
+      line-height: 1.6;
+    }
+  }
+
+  // btn
+  .bottom-flex {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    background: #fff;
+    box-shadow: 1px 1px 10px 0px rgba(107, 105, 105, 0.1);
+
+    .common-btn {
+      font-size: 32rpx;
+      color: #FE5250;
+      height: 100rpx;
+      line-height: 100rpx;
+      text-align: center;
+      display: inline-block;
+      flex: 1;
+    }
+
+    .red-btn {
+      background: #FE5250;
+      color: #fff;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import config from "./config"
+import config from './config'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -15,33 +15,36 @@ const codeMessage = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。',
-};
-
+  504: '网关超时。'
+}
+// 0成功
+// 2失败
+// 3字段有重复
+// -1没有token或者token不对
 /* 异常处理程序 */
 const errorHandler = error => {
-  const { response } = error;
+  const { response } = error
   if (response && response.status) {
-    const errorText = codeMessage[response.status] || response.statusText;
-    const { status } = response;
+    const errorText = codeMessage[response.status] || response.statusText
+    const { status } = response
     uni.showToast({
-      icon: "none",
+      icon: 'none',
       title: `请求错误 ${status}`,
       duration: 2000
-    });
+    })
   } else if (!response) {
     uni.showToast({
-      icon: "none",
+      icon: 'none',
       title: '您的网络发生异常，无法连接服务器',
       duration: 2000
-    });
+    })
   }
 
-  return response;
-};
+  return response
+}
 
 class $request {
-  static async init({
+  static async init ({
     url,
     params,
     headers,
@@ -49,70 +52,76 @@ class $request {
     method = 'POST',
     isNotice = true,
     gateway,
-    loading = false,
+    loading = false
   }) {
-    const headerToken = { token: uni.getStorageSync('token') };
+    const headerToken = { token: uni.getStorageSync('token') }
     try {
       if (loading) {
         uni.showLoading({
           title: '加载中'
-        });
+        })
       }
-      const r = await new Promise((resolve, reject) => uni.request({
-        url: config.url + gateway + '/' + url,
-        data: data,
-        header: {
-          ...headerToken,
-          ...headers
-        },
-        method,
-        success: (res) => {
-          resolve(res)
-        },
-        fail: (error) => {
-          resolve(error)
-        }
-      }))
-      const { data: resultData } = r;
-      const { code, data: result, message } = resultData;
+      const r = await new Promise((resolve, reject) =>
+        uni.request({
+          url: config.url + gateway + '/' + url,
+          data: data,
+          header: {
+            ...headerToken,
+            ...headers
+          },
+          method,
+          success: res => {
+            resolve(res)
+          },
+          fail: error => {
+            resolve(error)
+          }
+        })
+      )
+      const { data: resultData } = r
+      const { code, data: result, message } = resultData
       if (loading) {
-        uni.hideLoading();
+        uni.hideLoading()
       }
       if (isNotice) {
         if (code === 0) {
           return result
         }
+        if (code === -1) {
+          uni.reLaunch({
+            url: '/pages/login/index'
+          })
+        }
         uni.showToast({
-          title: 'message',
+          title: message,
           duration: 2000
-        });
+        })
       } else {
-        return resultData;
+        return resultData
       }
-      return false;
+      return false
     } catch (error) {
       if (loading) {
         uni.hideLoading()
       }
-      errorHandler(error);
-      return false;
+      errorHandler(error)
+      return false
     }
   }
 
-  static post({ ...option }) {
+  static post ({ ...option }) {
     return this.init({
       ...option,
-      method: 'post',
-    });
+      method: 'post'
+    })
   }
 
-  static get({ ...option }) {
+  static get ({ ...option }) {
     return this.init({
       ...option,
-      method: 'get',
-    });
+      method: 'get'
+    })
   }
-
 }
 
-export default $request;
+export default $request

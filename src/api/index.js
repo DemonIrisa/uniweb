@@ -16,12 +16,14 @@
 import * as Weixin from './modules/Weixin';
 import * as Type from './modules/Type';
 import * as Goods from './modules/Goods';
+import * as User from './modules/User'
+import config from "@/utils/config"
 
 
 export default {
   Weixin,
   Goods,
   Type,
-
-
+  User,
+  Upload:config.url+'upload/uploadFileStream'
 };
