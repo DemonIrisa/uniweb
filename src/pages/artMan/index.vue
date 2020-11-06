@@ -251,6 +251,8 @@ export default {
 .cell-left {
   width: 200rpx;
   background: rgb(236, 235, 235);
+  height: 100%;
+  overflow-y: auto;
 }
 .cell-right {
   width: calc(100vw - 210rpx);

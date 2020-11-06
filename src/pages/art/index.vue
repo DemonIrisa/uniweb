@@ -12,25 +12,28 @@
       <u-search placeholder="请输入关键词" v-model="keyword" @search="getGoods" @custom="getGoods" @clear="getGoods"></u-search>
     </view>
     <view class="select-cell">
-      <view class="cell-left">
-        <view v-for="(item,index) in typeList" @click="handleClick(index)" :key="item._id" :class="selectIndex === index?'active cell-btn': 'cell-btn' ">
-          {{item.name}}
-        </view>
-      </view>
-      <view class="cell-right" v-if="ready">
-        <view v-if="goodsList.length != 0">
-          <view v-for="item in goodsList" :key="item._id" class="cell flexRow" @click="handleDetailClick(item)">
-            <img :src="item.imgList[0]" alt="" class="cell-pic">
-            <p class="cell-title-room ellipsis-two">{{item.name}}</p>
-            <view class="fixed-left">
-              <u-icon name="arrow-right" color="#666" size="30"></u-icon>
-            </view>
+      <u-notice-bar mode="horizontal" :list="notice"></u-notice-bar>
+      <div class="list-w">
+        <view class="cell-left">
+          <view v-for="(item,index) in typeList" @click="handleClick(index)" :key="item._id" :class="selectIndex === index?'active cell-btn': 'cell-btn' ">
+            {{item.name}}
           </view>
         </view>
-        <view v-else class="no-wrap">
-          <u-empty text="没有数据" mode="list"></u-empty>
+        <view class="cell-right" v-if="ready">
+          <view v-if="goodsList.length != 0">
+            <view v-for="item in goodsList" :key="item._id" class="cell flexRow" @click="handleDetailClick(item)">
+              <img :src="item.imgList[0]" alt="" class="cell-pic">
+              <p class="cell-title-room ellipsis-two">{{item.name}}</p>
+              <view class="fixed-left">
+                <u-icon name="arrow-right" color="#666" size="30"></u-icon>
+              </view>
+            </view>
+          </view>
+          <view v-else class="no-wrap">
+            <u-empty text="没有数据" mode="list"></u-empty>
+          </view>
         </view>
-      </view>
+      </div>
     </view>
   </view>
 </template>
@@ -46,7 +49,13 @@ export default {
       typeList: [],
       goodsList: [],
       url: config.url,
-      ready: false
+      ready: false,
+      notice: [
+        '各种石材',
+        '欢迎来电定制',
+        '杨先生 18658610003',
+        '应女士 13175392103'
+      ]
     }
   },
   onLoad() {
@@ -123,18 +132,23 @@ export default {
   padding: 10rpx;
 }
 .select-cell {
-  display: flex;
-  height: calc(100vh - 84rpx);
   overflow-y: auto;
+}
+.list-w {
+  display: flex;
+  height: calc(100vh - 160rpx);
+  flex: 1;
 }
 .cell-left {
   width: 200rpx;
   background: rgb(236, 235, 235);
+  height: 100%;
+  overflow-y: auto;
 }
 .cell-right {
   width: calc(100vw - 210rpx);
   margin-left: 10rpx;
-  min-height: 100%;
+  height: 100%;
   overflow-y: auto;
   .no-wrap {
     padding-top: 50rpx;
@@ -163,7 +177,7 @@ export default {
     top: 0;
     width: 8rpx;
     height: 100%;
-    background:  #ff5e4c;
+    background: #ff5e4c;
   }
 }
 .cell {
