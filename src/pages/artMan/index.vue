@@ -24,7 +24,7 @@
       <view class="cell-right" v-if="ready">
         <view v-if="goodsList.length != 0">
           <view v-for="item in goodsList" :key="item._id" class="cell flexRow" @click="handleDetailClick(item)">
-            <img :src="item.imgList[0]" alt="" class="cell-pic">
+            <u-lazy-load :image="item.imgList[0]" alt="" class="cell-pic"></u-lazy-load>
             <p class="cell-title-room ellipsis-two">{{item.name}}</p>
             <view class="fixed-left">
               <u-icon name="arrow-right" color="#666" size="30"></u-icon>

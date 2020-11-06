@@ -5,9 +5,9 @@
     <div class="wrap-p">
       <div>
         <div v-for="(item,i) in obj.content" :key="i">
-          <image @click="previewImg(item.img)" class="img-big" :src="item.img" v-if="item.type===1" mode="widthFix"></image>
+          <u-lazy-load @click="previewImg(item.img)" class="img-big" :image="item.img" v-if="item.type===1" img-mode="widthFix"></u-lazy-load>
           <div v-if="item.type===2">
-            <image class="img-small" @click="previewImg(child)" v-for="(child,j) in item.img" :src="child" mode="widthFix"></image>
+            <u-lazy-load class="img-small" @click="previewImg(child)" v-for="(child,j) in item.img" :image="child" img-mode="widthFix"></u-lazy-load>
           </div>
           <!-- 文字 -->
           <text class="text-info" v-if="item.type===3">{{item.txt}}</text>

@@ -19,10 +19,10 @@
             </p>
           </div>
           <!-- 大图 -->
-          <image class="img-big" mode="aspectFill" :src="item.img" @click="imgTap(item,i)" v-if="item.type===1"></image>
+          <u-lazy-load class="img-big" img-mode="aspectFill" :image="item.img" @click="imgTap(item,i)" v-if="item.type===1"></u-lazy-load>
           <!-- 小图 -->
           <div class="flexRow small-i-img" v-if="item.type===2">
-            <image @click="imgTap(child,i,j)" v-for="(child,j) in item.img" :key="j" class="img-small" mode="aspectFill" :src="child"></image>
+            <u-lazy-load @click="imgTap(child,i,j)" v-for="(child,j) in item.img" :key="j" class="img-small" img-mode="aspectFill" :image="child"></u-lazy-load>
             <div class="add-wrap flexRow" @click="chooseImageList(2,null,i,'add')">
               <image class="icon-add" mode="widthFix" src="../../static/add-re.png"></image>
             </div>

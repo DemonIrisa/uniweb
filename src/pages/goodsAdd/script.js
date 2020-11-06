@@ -1,5 +1,6 @@
 import api from '@/api'
 import config from '@/utils/config'
+import compass from '../../utils/compass'
 export default {
   data () {
     return {
@@ -58,12 +59,13 @@ export default {
     chooseVideo (typeVideo, txt, videoI) {
       uni.chooseVideo({
         sourceType: ['album', 'camera'],
-        success: res => {
+        success: async res => {
           uni.showLoading({ mask: true, title: '正在上传' })
           const token = uni.getStorageSync('token')
+          let filePath = await compass(res.tempFilePath, 0.8)
           uni.uploadFile({
             url: config.url + api.Upload,
-            filePath: res.tempFilePath,
+            filePath,
             name: 'files',
             header: {
               token: token
@@ -230,7 +232,7 @@ export default {
         complete: function () {}
       })
     },
-    uploadOneByOne (
+    async uploadOneByOne (
       imgPaths,
       successUp,
       failUp,
@@ -247,9 +249,10 @@ export default {
         })
       }
       const token = uni.getStorageSync('token')
+      let filePath = await compass(imgPaths[count], 0.8)
       uni.uploadFile({
         url: config.url + api.Upload,
-        filePath: imgPaths[count],
+        filePath,
         name: 'file',
         header: {
           token: token
