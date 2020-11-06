@@ -255,6 +255,8 @@ export default {
 .cell-right {
   width: calc(100vw - 210rpx);
   margin-left: 10rpx;
+  min-height: 100%;
+  overflow-y: auto;
   .no-wrap {
     padding-top: 50rpx;
   }
