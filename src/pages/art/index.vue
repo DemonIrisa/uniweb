@@ -73,13 +73,14 @@ export default {
         if (this.goodsList.length > 0) {
           this.goodsList.map(item => {
             item.imgList = []
+            let value = []
             if (item.value.indexOf('[') !== -1) {
-              item.value = JSON.parse(item.value)
+              value = JSON.parse(item.value)
             } else {
-              item.value = []
+              value = []
             }
-            if (item.value.length > 0) {
-              item.value.map(child => {
+            if (value.length > 0) {
+              value.map(child => {
                 if (child.type === 1) {
                   item.imgList = [...item.imgList, child.img]
                 } else if (child.type === 2) {
@@ -110,7 +111,7 @@ export default {
     },
     handleDetailClick(item) {
       uni.navigateTo({
-        url: `/pages/detail/index?imgs=${item.imgs}`
+        url: `/pages/detail/index?value=${item.value}&name=${item.name}`
       });
     }
   }
