@@ -159,9 +159,9 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    width: 5rpx;
+    width: 8rpx;
     height: 100%;
-    background: orange;
+    background:  #ff5e4c;
   }
 }
 .cell {
