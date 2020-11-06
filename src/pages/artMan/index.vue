@@ -76,6 +76,7 @@ export default {
   methods: {
     visibleSort() {
       this.showSort = true
+      this.sortObj.name = ''
       delete this.sortObj._id
     },
     // 编辑分类
@@ -141,7 +142,7 @@ export default {
         {
           name: this.keyword,
           _type: this.typeList[this.selectIndex]._id,
-          pageSize:10000
+          pageSize: 10000
         })
       if (result) {
         this.goodsList = result.list || []
@@ -281,7 +282,7 @@ export default {
     top: 0;
     width: 8rpx;
     height: 100%;
-    background:  #ff5e4c;
+    background: #ff5e4c;
   }
 }
 .cell {
