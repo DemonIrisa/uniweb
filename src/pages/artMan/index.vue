@@ -43,7 +43,7 @@
       <p class="title">{{edit?'修改分类':'添加分类'}}</p>
       <input class="sort-name" placeholder="分类名称" v-model="sortObj.name" />
       <button class="sure-btn" @click="addSort">确认</button>
-      <image @click="showSort=false" class="close" mode="widthFix" src="/static/close-circle.png"></image>
+      <image @click="showSort=false" class="close" mode="widthFix" src="../../static/close-circle.png"></image>
     </div>
   </view>
 </template>
@@ -175,9 +175,24 @@ export default {
       })
     },
     handleDetailClick(item) {
-      uni.navigateTo({
-        url: `/pages/detail/index?imgs=${item.imgs}`
-      });
+      uni.showActionSheet({
+        itemList: ['查看', '编辑', '删除'],
+        success: res => {
+          let { tapIndex } = res
+          if (tapIndex === 0) {
+            this.routeTo(`/pages/detail/index?imgs=${item.imgs}`)
+          } else if (tapIndex === 1) {
+            this.showSort = true
+            this.sortObj._id = item._id
+            this.sortObj.name = item.name
+          } else if (tapIndex === 2) {
+            this.deleteSort(item._id)
+          }
+        },
+        fail: res => {
+          console.log(res.errMsg)
+        }
+      })
     },
     routeTo(url) {
       uni.navigateTo({

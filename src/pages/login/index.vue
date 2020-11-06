@@ -1,7 +1,7 @@
 <template>
   <div class="rela-wrap">
     <div class="login-wrap center-wrap">
-      <image class="logo" src="/static/logo1.png" mode="widthFix"></image>
+      <image class="logo" src="../../static/logo1.png" mode="widthFix"></image>
       <div>
         <p class="flexRow wrap-input">
           <span class="left-p">用户名</span>
